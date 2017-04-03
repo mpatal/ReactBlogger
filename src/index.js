@@ -2,18 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-
-import App from './components/app';
+import { Router, browserHistory} from 'react-router';
 import reducers from './reducers';
-
 import chalk from 'chalk';
+import routes from './routes';
 
 const createStoreWithMiddleware = applyMiddleware()(createStore);
 
-console.log(chalk.green('starting react app...'));
+console.log(chalk.green('starting react app...')); //eslint-disable-line no-console
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <App />
+    <Router history={browserHistory} routes={routes}/>
   </Provider>
   , document.querySelector('.container'));
